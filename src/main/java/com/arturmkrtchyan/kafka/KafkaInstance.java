@@ -21,7 +21,18 @@ public class KafkaInstance {
 
     private final Path path;
 
-    private KafkaInstance(final Path instancePath){
+    private static boolean onWindows = false;
+    private static String scriptFileSuffix;
+
+    private static final String kafkaBinaryPath;
+
+    static {
+        onWindows = System.getProperty("os.name").startsWith("Windows");
+        scriptFileSuffix = onWindows ? "bat" : "sh";
+        kafkaBinaryPath = onWindows ? "bin/windows/" : "bin/";
+    }
+
+    private KafkaInstance(final Path instancePath) {
         this.path = instancePath;
     }
 
@@ -34,26 +45,31 @@ public class KafkaInstance {
     }
 
     public Path getStartupScript() {
-        return getPath().resolve("bin/kafka-server-start.sh");
+        return getBinaryPath("kafka-server-start");
     }
 
     public Path getShutdownScript() {
-        return getPath().resolve("bin/kafka-server-stop.sh");
+        return getBinaryPath("kafka-server-stop");
+    }
+
+    public Path getZookeeperStartupScript() {
+        return getBinaryPath("zookeeper-server-start");
+    }
+
+    public Path getZookeeperShutdownScript() {
+        return getBinaryPath("zookeeper-server-stop");
     }
 
     public Path getConfig() {
         return getPath().resolve("config/server.properties");
     }
 
-    public Path getZookeeperStartupScript() {
-        return getPath().resolve("bin/zookeeper-server-start.sh");
-    }
-
-    public Path getZookeeperShutdownScript() {
-        return getPath().resolve("bin/zookeeper-server-stop.sh");
-    }
-
     public Path getZookeeperConfig() {
         return getPath().resolve("config/zookeeper.properties");
     }
+
+    private Path getBinaryPath(String scriptName) {
+        return getPath().resolve(kafkaBinaryPath + scriptName"." + scriptFileSuffix);
+    }
+
 }
