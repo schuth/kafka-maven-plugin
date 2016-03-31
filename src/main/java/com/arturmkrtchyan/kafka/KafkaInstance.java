@@ -69,7 +69,7 @@ public class KafkaInstance {
     }
 
     private Path getBinaryPath(String scriptName) {
-        return getPath().resolve(kafkaBinaryPath + scriptName"." + scriptFileSuffix);
+        return getPath().resolve(kafkaBinaryPath + scriptName + "." + scriptFileSuffix);
     }
 
 }

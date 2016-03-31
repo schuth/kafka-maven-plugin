@@ -128,31 +128,31 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>com.arturmkrtchyan.kafka</groupId>
-                <artifactId>kafka-maven-plugin</artifactId>
-                <version>0.0.1</version>
-                <configuration>
-                    <scalaVersion>2.9.2</scalaVersion>
-                    <kafkaVersion>0.8.2.1</kafkaVersion>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>pre-integration</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>post-integration</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.arturmkrtchyan.kafka</groupId>-->
+                <!--<artifactId>kafka-maven-plugin</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<configuration>-->
+                    <!--<scalaVersion>2.11</scalaVersion>-->
+                    <!--<kafkaVersion>0.9.0.1</kafkaVersion>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>pre-integration</id>-->
+                        <!--<phase>pre-integration-test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>start</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>post-integration</id>-->
+                        <!--<phase>post-integration-test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>stop</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
@@ -191,8 +191,8 @@
                 <configuration>
                     <!-- Sets the VM argument line used when unit tests are run. -->
                     <argLine>${surefireArgLine}</argLine>
-                    <!-- Skips unit tests if the value of skip.unit.tests property is true -->
-                    <skipTests>${skip.unit.tests}</skipTests>
+                     <!--Skips unit tests if the value of skip.unit.tests property is true-->
+                    <!--<skipTests>${skip.unit.tests}</skipTests>-->
                     <!-- Excludes integration tests when unit tests are run. -->
                     <excludes>
                         <exclude>**/IT*.java</exclude>
